@@ -1,27 +1,23 @@
 package com.neer;
 
+import com.neer.cache.Cache;
+
 import java.security.MessageDigest;
 import java.util.*;
 
 public class Graph {
     static MessageDigest md;
 
-    static {
-        try {
-            md = MessageDigest.getInstance("MD5");
-        } catch (Exception ignored) {
-        }
-    }
+
 
     private final Map<Integer, Vertex> vertices = new TreeMap<>();
-    Map<String, String> cache = new HashMap<>();
 
     public Map<Integer, Vertex> getVertices() {
         return vertices;
     }
-
+    private Cache cache;
     public String getNestedGraphSignature() {
-        cache = new HashMap<>();
+        cache = new Cache();
         List<String> rs = new ArrayList<>();
         for (Vertex v : getVertices().values()) {
             rs.add(getVertexSignature(v, 0));
@@ -31,32 +27,17 @@ public class Graph {
         for (String s : rs) {
             sb.append(s).append("\n");
         }
-        cache = new HashMap<>();
+        cache = new Cache();
         return sb.toString();
     }
 
-    public String getCacheKey(Vertex v, int tabs) {
-        return v.getId() + "##" + tabs;
-    }
 
-    public String getCacheEntry(Vertex v, int tabs) {
-        return cache.get(getCacheKey(v, tabs));
-    }
 
-    public String getHashHex(String input) {
-        byte[] digest = md.digest(input.getBytes());
-        StringBuilder hexString = new StringBuilder();
-
-        for (byte b : digest) {
-            hexString.append(Integer.toHexString(0xFF & b));
-        }
-        return hexString.toString();
-    }
 
     public String getVertexSignature(Vertex v) {
         String cacheKey = v.getId() + "#" + v.getGraph().getVertices().size();
         if (cache.containsKey(cacheKey)) {
-            return cache.get(cacheKey);
+            return cache.getCacheEntry(v, v.getGraph().getVertices().size());
 
         }
         StringBuilder sb2 = new StringBuilder();
@@ -77,17 +58,17 @@ public class Graph {
         /* sb.append(sb2); */
         String result = sb2.toString();
         //System.out.println(sb2.toString());
-        putCache(cacheKey, result);
-        return cache.get(cacheKey);
+        cache.putCache(cacheKey, result);
+        return cache.getCacheEntry(v,v.getGraph().getVertices().size());
     }
 
     public String getVertexSignature(Vertex v, int depth) {
         if (depth > v.getGraph().getVertices().size()) {
             return getVertexSignature(v);
         }
-        String key = getCacheKey(v, depth);
+        String key = cache.getCacheKey(v, depth);
         if (cache.containsKey(key)) {
-            return (getCacheEntry(v, depth));
+            return (cache.getCacheEntry(v, depth));
         }
         StringBuilder sb = new StringBuilder();
         sb.append(v.getNumEdges());
@@ -102,8 +83,8 @@ public class Graph {
             }
             //System.out.println(rs1);
             Collections.sort(rs1);
-            for (int i = 0; i < rs1.size(); i++) {
-                sb.append(rs1.get(i));
+            for (String s : rs1) {
+                sb.append(s);
             }
             sb.append("]");
 
@@ -111,15 +92,12 @@ public class Graph {
         //sb.append(",");
 
         String result = sb.toString();
-        putCache(key, result);
-        return cache.get(key);
+        cache.putCache(key, result);
+        return cache.getCacheEntry(v,depth);
 
     }
 
-    public void putCache(String key, String value) {
-        String hash = getHashHex(value);
-        cache.put(key, hash);
-    }
+
 
     public void doDFS(Vertex v, HashSet<Integer> visited) {
         if (!visited.contains(v.getId())) {
@@ -166,8 +144,8 @@ public class Graph {
             Vertex oldVertex = oldMV.get(oldId);
             Vertex newVertex = newMV.get(newId);
 
-            for (Vertex oldu : oldVertex.getEdges().values()) {
-                newVertex.addEdge(newMV.get(mReverse.get(oldu.getId())));
+            for (Vertex oldU : oldVertex.getEdges().values()) {
+                newVertex.addEdge(newMV.get(mReverse.get(oldU.getId())));
             }
         }
         return g;
