@@ -1,4 +1,4 @@
 gradle/**/*.lock
 build/**/*.lock
-.gradle/**/*.class
+.gradle
 
