@@ -19,13 +19,9 @@ public class Graph {
         cache = new HashMap<String, String>();
         List<String> rs =  new ArrayList<String>();
         for (Vertex v : getVertices().values()) {
-            StringBuilder sb = new StringBuilder();
-            getVertexSignature(v,sb, 0);
-            rs.add(sb.toString());
+            rs.add(getVertexSignature(v, 0));
         }
         StringBuilder sb = new StringBuilder();
-
-
         Collections.sort(rs);
         for( String s: rs) {
             sb.append(s).append("\n");
@@ -60,11 +56,11 @@ public class Graph {
         }
         return hexString.toString();
     }
-    public void getVertexSignature(Vertex v, StringBuilder sb) {
-        String cacheKey = v.getId() +  "#" +0;
+    public String getVertexSignature(Vertex v) {
+        String cacheKey = v.getId() +  "#" +v.getGraph().getVertices().size();
         if (cache.containsKey(cacheKey)) {
-            sb.append(cache.get(cacheKey));
-            return;
+            return cache.get(cacheKey);
+
         }
         StringBuilder sb2 = new StringBuilder();
 
@@ -83,22 +79,20 @@ public class Graph {
             sb2.append(str);
         }
         sb2.append("]");
-        sb.append(sb2);
-
-        cache.put(v.getId()+"#"+0, sb2.toString());
+        /* sb.append(sb2); */
+        String result = sb2.toString();
+        //System.out.println(sb2.toString());
+        putCache(cacheKey, result);
+        return cache.get(cacheKey);
     }
 
-    public void getVertexSignature(Vertex v,  StringBuilder resultBuffer, int depth) {
+    public String getVertexSignature(Vertex v, int depth) {
         if (depth > v.getGraph().getVertices().size()) {
-            getVertexSignature(v, resultBuffer);
-            resultBuffer.append(",");
-            return;
+            return getVertexSignature(v);
         }
         String key = getCacheKey(v, depth);
         if (cache.containsKey(key)) {
-            resultBuffer.append(getCacheEntry(v, depth));
-            return;
-
+            return (getCacheEntry(v, depth));
         }
         StringBuilder sb = new StringBuilder();
         sb.append(v.getNumEdges());
@@ -107,10 +101,11 @@ public class Graph {
             sb.append("[");
             ArrayList<String> rs1 = new ArrayList<String>();
             for (Vertex u : v.getEdges().values()) {
-                StringBuilder sb1 = new StringBuilder();
-                getVertexSignature(u,  sb1, depth + 1);
-                rs1.add(sb1.toString());
+
+                String sb1 = getVertexSignature(u,  depth + 1);
+                rs1.add(sb1);
             }
+            //System.out.println(rs1);
             Collections.sort(rs1);
             for (int i =0; i < rs1.size(); i++) {
                 sb.append(rs1.get(i));
@@ -118,11 +113,12 @@ public class Graph {
             sb.append("]");
 
         }
-        sb.append(",");
+        //sb.append(",");
 
+         String result = sb.toString();
+        putCache(key, result);
+        return cache.get(key);
 
-        putCache(key, sb.toString());
-        resultBuffer.append(cache.get(key));
     }
 
     public void putCache(String key, String value) {

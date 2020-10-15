@@ -9,13 +9,22 @@ public class Main {
     public static void main(String[] args) throws Exception{
         TreeSet<String> uniqueSigs = new TreeSet<String>();
         MessageDigest md = MessageDigest.getInstance("MD5");
-        for (int i = 0; i < 100000000; i++) {
-            if (i % 1000 == 0) {
-                System.out.println(i + "   " + uniqueSigs.size());
+        long time = 0;
+        long totalTime =0;
+        for (int i = 1; i < 100000000; i++) {
+            if (i % 1 == 0) {
+                System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime)/i);
             }
-            Graph g = RandomGraphGenerator.generateRandomGraph(10,10);
-            //System.out.println("Graph Generated");
+            int numnodes= 1000;
+            int numEdges =(int) ( numnodes*numnodes/2 - (numnodes *Math.log(numnodes)));
+            Graph g = RandomGraphGenerator.generateRandomGraph(numnodes,numEdges);
+            System.out.println("Graph Generated");
+            time = System.currentTimeMillis();
             String sig = g.getNestedGraphSignature();
+            totalTime += System.currentTimeMillis() -time;
+            if (i % 1 == 0) {;
+                System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime)/i);
+            }
             //g.printGraph();
             //System.out.println(sig);
             sig = new String(md.digest(sig.getBytes()));
