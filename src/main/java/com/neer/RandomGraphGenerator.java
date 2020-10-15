@@ -7,7 +7,6 @@ public class RandomGraphGenerator {
     public static Graph generateRandomGraph(int numVertices, int numEdges) {
         Graph g = new Graph();
         do {
-            g = new Graph();
             for (int i = 0; i < numVertices; i++) {
                 g.getVertices().put(i, new Vertex(i, g));
             }

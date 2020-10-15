@@ -4,60 +4,57 @@ import java.security.MessageDigest;
 import java.util.*;
 
 public class Graph {
-    private Map<Integer, Vertex> vertices = new TreeMap<Integer, Vertex>();
+    static MessageDigest md;
+
+    static {
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (Exception ignored) {
+        }
+    }
+
+    private final Map<Integer, Vertex> vertices = new TreeMap<>();
+    Map<String, String> cache = new HashMap<>();
+
     public Map<Integer, Vertex> getVertices() {
         return vertices;
     }
 
-    Map<String, String> cache =  new HashMap<String,String>();
-
-    public void setVertices(Map<Integer, Vertex> vertices) {
-        this.vertices = vertices;
-    }
-
     public String getNestedGraphSignature() {
-        cache = new HashMap<String, String>();
-        List<String> rs =  new ArrayList<String>();
+        cache = new HashMap<>();
+        List<String> rs = new ArrayList<>();
         for (Vertex v : getVertices().values()) {
             rs.add(getVertexSignature(v, 0));
         }
         StringBuilder sb = new StringBuilder();
         Collections.sort(rs);
-        for( String s: rs) {
+        for (String s : rs) {
             sb.append(s).append("\n");
         }
-        cache = new HashMap<String, String>();
+        cache = new HashMap<>();
         return sb.toString();
     }
 
     public String getCacheKey(Vertex v, int tabs) {
-        return v.getId() +"##" + tabs;
+        return v.getId() + "##" + tabs;
     }
-
 
     public String getCacheEntry(Vertex v, int tabs) {
         return cache.get(getCacheKey(v, tabs));
     }
 
-    static MessageDigest md;
-    static {
-        try {
-            md = MessageDigest.getInstance("MD5");
-        } catch (Exception e) {
-        }
-    }
-
     public String getHashHex(String input) {
         byte[] digest = md.digest(input.getBytes());
-        StringBuffer hexString = new StringBuffer();
+        StringBuilder hexString = new StringBuilder();
 
-        for (int i = 0; i < digest.length; i++) {
-            hexString.append(Integer.toHexString(0xFF & digest[i]));
+        for (byte b : digest) {
+            hexString.append(Integer.toHexString(0xFF & b));
         }
         return hexString.toString();
     }
+
     public String getVertexSignature(Vertex v) {
-        String cacheKey = v.getId() +  "#" +v.getGraph().getVertices().size();
+        String cacheKey = v.getId() + "#" + v.getGraph().getVertices().size();
         if (cache.containsKey(cacheKey)) {
             return cache.get(cacheKey);
 
@@ -68,11 +65,9 @@ public class Graph {
         sb2.append("=");
         sb2.append("[");
         //v.sortEdgesNested();
-        ArrayList<String> rs = new ArrayList<String>();
+        ArrayList<String> rs = new ArrayList<>();
         for (Vertex u : v.getEdges().values()) {
-            StringBuilder sb1 = new StringBuilder();
-            sb1.append(u.getNumEdges()).append(",");
-            rs.add(sb1.toString());
+            rs.add(u.getNumEdges() + ",");
         }
         Collections.sort(rs);
         for (String str : rs) {
@@ -99,15 +94,15 @@ public class Graph {
         if (v.getEdges().size() > 0) {
             sb.append("=");
             sb.append("[");
-            ArrayList<String> rs1 = new ArrayList<String>();
+            ArrayList<String> rs1 = new ArrayList<>();
             for (Vertex u : v.getEdges().values()) {
 
-                String sb1 = getVertexSignature(u,  depth + 1);
+                String sb1 = getVertexSignature(u, depth + 1);
                 rs1.add(sb1);
             }
             //System.out.println(rs1);
             Collections.sort(rs1);
-            for (int i =0; i < rs1.size(); i++) {
+            for (int i = 0; i < rs1.size(); i++) {
                 sb.append(rs1.get(i));
             }
             sb.append("]");
@@ -115,7 +110,7 @@ public class Graph {
         }
         //sb.append(",");
 
-         String result = sb.toString();
+        String result = sb.toString();
         putCache(key, result);
         return cache.get(key);
 
@@ -137,7 +132,7 @@ public class Graph {
 
     public boolean isConnected() {
 
-        HashSet<Integer> visited = new HashSet<Integer>();
+        HashSet<Integer> visited = new HashSet<>();
         doDFS(getVertices().get(0), visited);
         return visited.size() == getVertices().size();
     }
@@ -145,25 +140,25 @@ public class Graph {
     public Graph getIsoMorphicGraph() {
         Set<Integer> keys = getVertices().keySet();
 
-        ArrayList<Integer> list = 		(new ArrayList<Integer>());
+        ArrayList<Integer> list = (new ArrayList<>());
 
         list.addAll(keys);
         Collections.shuffle(list);
         Iterator<Integer> itr = list.iterator();
         Graph g = new Graph();
-        Map<Integer, Integer> m = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> mReverse = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> m = new HashMap<>();
+        Map<Integer, Integer> mReverse = new HashMap<>();
 
-        for (int i = 0 ; i < keys.size(); i++) {
+        for (int i = 0; i < keys.size(); i++) {
             if (itr.hasNext()) {
-                g.getVertices().put(i, new Vertex(i,g));
+                g.getVertices().put(i, new Vertex(i, g));
                 int oldId = itr.next();
                 m.put(i, oldId);
                 mReverse.put(oldId, i);
             }
         }
 
-        for (int newId = 0 ; newId < keys.size(); newId++) {
+        for (int newId = 0; newId < keys.size(); newId++) {
             Map<Integer, Vertex> newMV = g.getVertices();
             Map<Integer, Vertex> oldMV = getVertices();
 
