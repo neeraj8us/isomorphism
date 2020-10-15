@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Cache {
 
-    Map<String, String> cache = new HashMap<>();
+    final Map<String, String> cache = new HashMap<>();
 
     public String getCacheKey(Vertex v, int depth) {
         return v.getId() + "##" + depth;

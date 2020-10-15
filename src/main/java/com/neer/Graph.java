@@ -6,16 +6,12 @@ import java.security.MessageDigest;
 import java.util.*;
 
 public class Graph {
-    static MessageDigest md;
-
-
-
     private final Map<Integer, Vertex> vertices = new TreeMap<>();
-
     public Map<Integer, Vertex> getVertices() {
         return vertices;
     }
     private Cache cache;
+
     public String getNestedGraphSignature() {
         cache = new Cache();
         List<String> rs = new ArrayList<>();
@@ -35,7 +31,7 @@ public class Graph {
 
 
     public String getVertexSignature(Vertex v) {
-        String cacheKey = v.getId() + "#" + v.getGraph().getVertices().size();
+        String cacheKey = cache.getCacheKey(v, v.getGraph().getVertices().size());
         if (cache.containsKey(cacheKey)) {
             return cache.getCacheEntry(v, v.getGraph().getVertices().size());
 
@@ -63,7 +59,7 @@ public class Graph {
     }
 
     public String getVertexSignature(Vertex v, int depth) {
-        if (depth > v.getGraph().getVertices().size()) {
+        if (depth >= v.getGraph().getVertices().size()) {
             return getVertexSignature(v);
         }
         String key = cache.getCacheKey(v, depth);

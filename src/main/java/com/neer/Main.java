@@ -8,23 +8,23 @@ import java.util.TreeSet;
 public class Main {
 
     public static void main(String[] args) {
-        int numNodes = 100;
-        int numEdges = (int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numNodes = 20;
+        int numEdges = 180; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
 
 
         TreeSet<String> uniqueSigs = new TreeSet<>();
         long time;
         long totalTime = 0;
-        for (int i = 1; i < 100000000; i++) {
-            if (i % 10 == 0) {
+        for (int i = 1; i < 1000000; i++) {
+            if (i % 1000 == 0) {
                 System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime) / i);
             }
             Graph g = RandomGraphGenerator.generateRandomGraph(numNodes, numEdges);
-            System.out.println("Graph Generated");
+            //System.out.println("Graph Generated");
             time = System.currentTimeMillis();
             String sig = g.getNestedGraphSignature();
             totalTime += System.currentTimeMillis() - time;
-            if (i % 10 == 0) {
+            if (i % 1000 == 0) {
                 System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime) / i);
             }
             //g.printGraph();
