@@ -1,4 +1,5 @@
 gradle/**/*.lock
 build/**/*.lock
 .gradle
-
+.idea
+build
