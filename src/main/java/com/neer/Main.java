@@ -1,8 +1,8 @@
 package com.neer;
 
+import com.neer.algo.IsoMorphicSignature;
 import com.neer.util.Util;
 
-import java.security.MessageDigest;
 import java.util.TreeSet;
 
 public class Main {
@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         int numNodes = 20;
         int numEdges = 180; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
-
+        IsoMorphicSignature algo  = new IsoMorphicSignature();
 
         TreeSet<String> uniqueSigs = new TreeSet<>();
         long time;
@@ -22,7 +22,7 @@ public class Main {
             Graph g = RandomGraphGenerator.generateRandomGraph(numNodes, numEdges);
             //System.out.println("Graph Generated");
             time = System.currentTimeMillis();
-            String sig = g.getNestedGraphSignature();
+            String sig = algo.getNestedGraphSignature(g);
             totalTime += System.currentTimeMillis() - time;
             if (i % 1000 == 0) {
                 System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime) / i);
@@ -37,7 +37,7 @@ public class Main {
                 Graph g2 = g.getIsoMorphicGraph();
                 //g.printGraph();
                 //g2.printGraph();
-                String sig2 = g2.getNestedGraphSignature();
+                String sig2 = algo.getNestedGraphSignature(g2);
                 sig2 = Util.getHashHex(sig2);
 
                 if (!sig.equals(sig2)) {
