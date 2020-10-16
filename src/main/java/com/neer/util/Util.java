@@ -3,6 +3,15 @@ package com.neer.util;
 import java.security.MessageDigest;
 
 public class Util {
+
+    static MessageDigest md;
+    static {
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (Exception ignored) {
+            ignored.printStackTrace();
+        }
+    }
     public static String getHashHex(String input) {
         byte[] digest = md.digest(input.getBytes());
         StringBuilder hexString = new StringBuilder();
@@ -13,11 +22,12 @@ public class Util {
         return hexString.toString();
     }
 
-    static MessageDigest md;
-    static {
-        try {
-            md = MessageDigest.getInstance("MD5");
-        } catch (Exception ignored) {
+    public static void printArray(String[] arr) {
+        for (String s: arr) {
+            System.out.println(s);
         }
+        System.out.println();
     }
+
+
 }
