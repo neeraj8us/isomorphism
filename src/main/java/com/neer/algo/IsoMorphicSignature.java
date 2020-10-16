@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class IsoMorphicSignature {
+public class IsoMorphicSignature implements  IsoMorphicAlgo{
 
     Cache cache = new Cache();
+    @Override
     public String getNestedGraphSignature(Graph g) {
         cache = new Cache();
         List<String> rs = new ArrayList<>();

@@ -1,4 +1,7 @@
-package com.neer;
+package com.neer.util;
+
+import com.neer.Graph;
+import com.neer.Vertex;
 
 import java.util.Random;
 
