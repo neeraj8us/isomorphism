@@ -29,9 +29,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="763ec577-3d9b-47f7-9365-75486b287a43" name="Default Changelist" comment="Optimized IsoDP.java&#10;Now it only take 40 seconds for a 500 node graph with 248650 edges.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/util/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/util/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +52,8 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="JUnit3 Test Class" />
       </list>
     </option>
   </component>
@@ -78,6 +81,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -85,7 +91,16 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.neer" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.neer.Main" />
       <module name="untitled.main" />
@@ -99,6 +114,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GraphTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.neer.GraphTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="GraphTest.testSerialize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.neer.GraphTest.testSerialize&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -110,6 +163,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.GraphTest.testSerialize" />
+        <item itemvalue="Gradle.GraphTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -217,29 +272,29 @@
     <state x="466" y="309" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1602824682400" />
     <state x="466" y="305" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.821@0.23.1440.821" timestamp="1602769088771" />
     <state x="466" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.823@0.23.1440.823" timestamp="1602847248551" />
-    <state width="1358" height="198" key="GridCell.Tab.0.bottom" timestamp="1602847175284">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.bottom" timestamp="1602995780223">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602833464598" />
-    <state width="1358" height="198" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1602770661179" />
+    <state width="1358" height="191" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1602995780223" />
     <state width="1358" height="198" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1602847175284" />
-    <state width="1358" height="198" key="GridCell.Tab.0.center" timestamp="1602847175283">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.center" timestamp="1602995780222">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602833464596" />
-    <state width="1358" height="198" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1602770661179" />
+    <state width="1358" height="191" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1602995780222" />
     <state width="1358" height="198" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1602847175283" />
-    <state width="1358" height="198" key="GridCell.Tab.0.left" timestamp="1602847175283">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.left" timestamp="1602995780221">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602833464595" />
-    <state width="1358" height="198" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1602770661179" />
+    <state width="1358" height="191" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1602995780221" />
     <state width="1358" height="198" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1602847175283" />
-    <state width="1358" height="198" key="GridCell.Tab.0.right" timestamp="1602847175284">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.right" timestamp="1602995780222">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602833464597" />
-    <state width="1358" height="198" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1602770661179" />
+    <state width="1358" height="191" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1602995780222" />
     <state width="1358" height="198" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1602847175284" />
     <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1602828826977">
       <screen x="0" y="0" width="1440" height="900" />
@@ -262,5 +317,12 @@
     </state>
     <state x="320" y="164" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1602824889962" />
     <state x="320" y="173" key="Vcs.Push.Dialog.v2/0.23.1440.821@0.23.1440.821" timestamp="1602769053677" />
+    <state x="486" y="202" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1602995599881">
+      <screen x="0" y="23" width="1440" height="821" />
+    </state>
+    <state x="486" y="202" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1440.821@0.23.1440.821" timestamp="1602995599881" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/untitled$GraphTest.ic" NAME="GraphTest Coverage Results" MODIFIED="1602995556443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

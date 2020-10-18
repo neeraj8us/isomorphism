@@ -2,6 +2,7 @@ package com.neer;
 
 import com.neer.cache.Cache;
 
+import java.io.*;
 import java.util.*;
 
 public class Graph {
@@ -58,6 +59,45 @@ public class Graph {
 
             for (Vertex oldU : oldVertex.getEdges().values()) {
                 newVertex.addEdge(newMV.get(mReverse.get(oldU.getId())));
+            }
+        }
+        return g;
+    }
+
+    public String serialize() {
+        StringBuffer sb = new StringBuffer();
+        for (Vertex v : getVertices().values()) {
+            sb.append(v.getId()).append("=");
+            boolean first = true;
+            for (Vertex u : v.getEdges().values()) {
+                if (first) {
+                    sb.append(u.getId());
+                    first = false;
+                    continue;
+                }
+                sb.append(",").append(u.getId());
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public static Graph deserialize(Reader sr) throws IOException {
+        BufferedReader br = new BufferedReader(sr);
+        Graph g = new Graph();
+        String line;
+        Map<Integer, Vertex> vertices = g.getVertices();
+        while((line = br.readLine()) != null) {
+            String[] tokens = line.split("=|,");
+            Vertex v = new Vertex(Integer.parseInt(tokens[0]), g);
+            vertices.put(v.getId(),v);
+            for (int i = 1; i < tokens.length; i++) {
+                int id = Integer.parseInt(tokens[i]);
+                if(!vertices.containsKey(id)) {
+                    vertices.put(id , new Vertex(id, g));
+                }
+                Vertex u = vertices.get(id);
+                v.addEdge(u);
             }
         }
         return g;

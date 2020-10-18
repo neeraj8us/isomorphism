@@ -14,20 +14,22 @@ public class Main {
     static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDP();
     public static void main(String[] args) {
         int numNodes = 20;
-        int numEdges = (int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numEdges = 180; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         TreeSet<String> uniqueSigs = new TreeSet<>();
         long time;
         long totalTime = 0;
+        System.out.println("Generating random graphs with " + numNodes  + " and " + numEdges);
         for (int i = 1; i < 1000000; i++) {
-            if (i % 1000 == 0) {
-               System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime) / i);
-            }
             Graph g = RandomGraphGenerator.generateRandomGraph(numNodes, numEdges);
             time = System.currentTimeMillis();
             String sig = algo.getNestedGraphSignature(g);
             totalTime += System.currentTimeMillis() - time;
-            if (i % 10000 == 0) {
-                System.out.println(i + "   " + uniqueSigs.size() + "   " + (totalTime) / i);
+            if (i % 1000 == 0) {
+                System.out.println("###############################################################");
+                System.out.println("Number of random graph considered = " + i);
+                System.out.println("Number of Unique Signature(# non isomorphic graphs)  = " + uniqueSigs.size());
+                System.out.println("Avg time =" + (totalTime/i) + "   milli seconds");
+                //System.out.println("###############################################################");
             }
             for (int j = 0; j < 1; j++) {
                 Graph g2 = g.getIsoMorphicGraph();
