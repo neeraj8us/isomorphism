@@ -34,6 +34,33 @@ public class IsoMorphicGraphSignatureDP implements IsoMorphicAlgo{
         return serialize(prevDepthSignature, null);
     }
 
+    @Override
+    public String[] getVerticesSignature(Graph g) {
+        int numVertices = g.getVertices().size();
+        String[] prevDepthSignature = new String[numVertices];
+        String[] currDepthSignature = new String[numVertices];
+
+        for (Vertex v: g.getVertices().values()) {
+            prevDepthSignature[v.getId()] = getVertexSignature(v);
+        }
+        //Util.printArray(prevDepthSignature);
+        for (int i =1; i <= numVertices; i++) {
+            for (Vertex v: g.getVertices().values()) {
+                String[] signature = new String[v.getNumEdges()];
+                int j = 0;
+                for (Vertex u : v.getEdges().values()) {
+                    signature[j] = prevDepthSignature[u.getId()];
+                    j++;
+                }
+                currDepthSignature[v.getId()]  = serialize(signature,v);
+            }
+            prevDepthSignature = currDepthSignature;
+            currDepthSignature =  new String[numVertices];
+        }
+        Arrays.sort(prevDepthSignature);
+        return prevDepthSignature;
+    }
+
     public String getVertexSignature(Vertex v) {
         String[] signature = new String[v.getNumEdges()];
         int i = 0;
