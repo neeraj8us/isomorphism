@@ -16,7 +16,4 @@ public class GraphTest extends TestCase {
         Graph gClone = Graph.deserialize(new StringReader(serialized));
         Assert.assertEquals(g.serialize(), gClone.serialize());
     }
-
-    public void testDeserialize() {
-    }
 }

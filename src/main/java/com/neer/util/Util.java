@@ -8,8 +8,8 @@ public class Util {
     static {
         try {
             md = MessageDigest.getInstance("SHA-256");
-        } catch (Exception ignored) {
-            ignored.printStackTrace();
+        } catch (Exception exp) {
+            exp.printStackTrace();
         }
     }
     public static String getHashHex(String input) {

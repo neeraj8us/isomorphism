@@ -35,7 +35,8 @@ public class Vertex {
     }
 
     public boolean equals(Object o) {
-        if (o == null) {
+
+        if (o == null || !(o instanceof Vertex)) {
             return false;
         }
         Vertex v1 = (Vertex) o;

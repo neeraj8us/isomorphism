@@ -5,14 +5,13 @@ import com.neer.algo.IsoMorphicGraphSignatureDP;
 import com.neer.algo.IsoMorphicAlgo;
 import com.neer.util.RandomGraphGenerator;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 public class Main {
     static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDP();
     public static void main(String[] args) {
-        int numNodes = 20;
-        int numEdges = 180; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numNodes = 10;
+        int numEdges = 10; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         HashSet<String> uniqueSigs = new HashSet<>();
         long time;
         long totalTime = 0;
@@ -32,19 +31,17 @@ public class Main {
             for (int j = 0; j < 1; j++) {
                 Graph g2 = g.getIsoMorphicGraph();
                 String sig2 = algo.getNestedGraphSignature(g2);
-                String[] verticesSig2 = algo.getVerticesSignature(g2);
-                String[] verticesSig = algo.getVerticesSignature(g);
+                HashMap<Integer, String> signatures = algo.getVerticesSignature(g2);
+                HashMap<Integer, String> signatures2 = algo.getVerticesSignature(g);
 
-                if (!Arrays.equals(verticesSig, verticesSig2)  || !sig.equals(sig2)) {
+                if (!algo.verifyMappings(signatures, signatures2)  || !sig.equals(sig2)) {
                     System.out.println("Graphs are not isomorphic");
                     System.out.println("" + sig);
                     System.out.println("" + sig2);
                 }
-
-
             }
             uniqueSigs.add(sig);
         }
-
     }
+
 }

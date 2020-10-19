@@ -4,8 +4,9 @@ import com.neer.Graph;
 import com.neer.Vertex;
 import com.neer.util.Util;
 import java.util.Arrays;
+import java.util.HashMap;
 
-public class IsoMorphicGraphSignatureDP implements IsoMorphicAlgo{
+public class IsoMorphicGraphSignatureDP extends IsoMorphicAlgo{
 
     @Override
     public String getNestedGraphSignature(Graph g) {
@@ -35,7 +36,8 @@ public class IsoMorphicGraphSignatureDP implements IsoMorphicAlgo{
     }
 
     @Override
-    public String[] getVerticesSignature(Graph g) {
+    public HashMap<Integer, String> getVerticesSignature(Graph g) {
+        HashMap<Integer, String> result = new HashMap<>();
         int numVertices = g.getVertices().size();
         String[] prevDepthSignature = new String[numVertices];
         String[] currDepthSignature = new String[numVertices];
@@ -53,12 +55,15 @@ public class IsoMorphicGraphSignatureDP implements IsoMorphicAlgo{
                     j++;
                 }
                 currDepthSignature[v.getId()]  = serialize(signature,v);
+                if (i == numVertices) {
+                    result.put(v.getId(), currDepthSignature[v.getId()]);
+                }
             }
             prevDepthSignature = currDepthSignature;
             currDepthSignature =  new String[numVertices];
         }
-        Arrays.sort(prevDepthSignature);
-        return prevDepthSignature;
+
+        return result;
     }
 
     public String getVertexSignature(Vertex v) {

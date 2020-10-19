@@ -65,7 +65,7 @@ public class Graph {
     }
 
     public String serialize() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (Vertex v : getVertices().values()) {
             sb.append(v.getId()).append("=");
             boolean first = true;
@@ -88,7 +88,7 @@ public class Graph {
         String line;
         Map<Integer, Vertex> vertices = g.getVertices();
         while((line = br.readLine()) != null) {
-            String[] tokens = line.split("=|,");
+            String[] tokens = line.split("[=,]");
             Vertex v = new Vertex(Integer.parseInt(tokens[0]), g);
             vertices.put(v.getId(),v);
             for (int i = 1; i < tokens.length; i++) {

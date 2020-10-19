@@ -30,10 +30,13 @@
   <component name="ChangeListManager">
     <list default="true" id="763ec577-3d9b-47f7-9365-75486b287a43" name="Default Changelist" comment="Optimized IsoDP.java&#10;Now it only take 40 seconds for a 500 node graph with 248650 edges.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Vertex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicAlgo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicSignature.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/util/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/util/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,36 +271,41 @@
     </state>
     <state x="533" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1602821262024" />
     <state x="533" y="172" key="#com.intellij.ide.util.MemberChooser/0.23.1440.823@0.23.1440.823" timestamp="1603016816336" />
-    <state x="466" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1602847248551">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state x="466" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603115268649">
+      <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state x="466" y="309" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1602824682400" />
     <state x="466" y="305" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.821@0.23.1440.821" timestamp="1602769088771" />
+    <state x="466" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.822@0.23.1440.822" timestamp="1603115268649" />
     <state x="466" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.823@0.23.1440.823" timestamp="1602847248551" />
-    <state width="1358" height="191" key="GridCell.Tab.0.bottom" timestamp="1603017447917">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.bottom" timestamp="1603116008929">
+      <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602833464598" />
     <state width="1358" height="191" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1603004688622" />
-    <state width="1358" height="191" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1603017447917" />
-    <state width="1358" height="191" key="GridCell.Tab.0.center" timestamp="1603017447916">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1603116008929" />
+    <state width="1358" height="191" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1603098546516" />
+    <state width="1358" height="191" key="GridCell.Tab.0.center" timestamp="1603116008927">
+      <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602833464596" />
     <state width="1358" height="191" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1603004688621" />
-    <state width="1358" height="191" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1603017447916" />
-    <state width="1358" height="191" key="GridCell.Tab.0.left" timestamp="1603017447915">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1603116008927" />
+    <state width="1358" height="191" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1603098546515" />
+    <state width="1358" height="191" key="GridCell.Tab.0.left" timestamp="1603116008926">
+      <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602833464595" />
     <state width="1358" height="191" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1603004688620" />
-    <state width="1358" height="191" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1603017447915" />
-    <state width="1358" height="191" key="GridCell.Tab.0.right" timestamp="1603017447917">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1358" height="191" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1603116008926" />
+    <state width="1358" height="191" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1603098546514" />
+    <state width="1358" height="191" key="GridCell.Tab.0.right" timestamp="1603116008928">
+      <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602833464597" />
     <state width="1358" height="191" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1603004688621" />
-    <state width="1358" height="191" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1603017447917" />
+    <state width="1358" height="191" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1603116008928" />
+    <state width="1358" height="191" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1603098546515" />
     <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1602828826977">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -323,6 +331,10 @@
       <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state x="486" y="202" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1440.821@0.23.1440.821" timestamp="1602995599881" />
+    <state x="319" y="56" key="new project wizard" timestamp="1603079829225">
+      <screen x="0" y="23" width="1440" height="822" />
+    </state>
+    <state x="319" y="56" key="new project wizard/0.23.1440.822@0.23.1440.822" timestamp="1603079829225" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/untitled$GraphTest.ic" NAME="GraphTest Coverage Results" MODIFIED="1602995556443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
