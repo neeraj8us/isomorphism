@@ -11,6 +11,10 @@ I have been working so hard to find a negative example but have been unsuccessfu
 Code in java file IsoMorphicGraphSignatureDP contains the method to generate the signature of the graph which is invariant
 for all isomorphic graph. i.e if the two graphs are isomorphic, their signature  will be exactly same.
 
+
+ In the case of hash collision, there is a chance that signatures are equal and graphs are not isomorphic. But that is remediated with the second step of generating the 1-1 mapping and verifying ISOMORPHISM.
+ 
+
 To Build execute the command.
 $ ./gradlew build
 
@@ -72,5 +76,28 @@ public class IsoMorphicGraphSignatureDP implements IsoMorphicAlgo{
         sb.append("]");
         String result = sb.toString();
         return Util.getHashHex(result);
+    }
+    
+    public boolean generateMappings(HashMap<Integer, String> signatures, HashMap<Integer, String> signatures2 ) {
+        Map<Integer, List<Integer>> mappings = new HashMap<>();
+        for (Map.Entry<Integer, String> e : signatures.entrySet()) {
+
+            for (Map.Entry<Integer, String> e2: signatures2.entrySet()) {
+                if (e.getValue().equals(e2.getValue())){
+                    List<Integer> l = mappings.computeIfAbsent(e.getKey(), k -> new ArrayList<>());
+                    l.add(e2.getKey());
+
+                }
+            }
+        }
+        /* Un comment if you want to get the mappings from Graph 1 to Graph 2.*/
+
+        /*
+        System.out.println("Psiible 1-1 mappings is " );
+        for (int i : mappings.keySet()) {
+            System.out.println("Node " + i + "of graph 1 can map to " + mappings.get(i) + " Ndoes of Graph 2");
+        }
+        */
+        return mappings.size() == signatures.size() && mappings.size() == signatures2.size();
     }
 }
