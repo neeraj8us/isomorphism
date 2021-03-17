@@ -13,8 +13,10 @@ for all isomorphic graph. i.e if the two graphs are isomorphic, their signature 
 
 
  In the case of hash collision, there is a chance that signatures are equal and graphs are not isomorphic. But that is remediated with the second step of generating the 1-1 mapping and verifying ISOMORPHISM.
+ In the verification step, we check that the signature for the each mapped nodes in two graph is same. Even if the signature are same because of collission, for verification step to give false positive signatures of all the nodes should also have hash collisions. Probability of n collisions will be low. I am working on the formal proof. 
  
- If the number of nodes and edges in the graph is high, we can increase the signature length from 16 bytes to lets say 1024 bytes. If we choose the signature hash to be of the size of O(log (N + E)) + 128 bits then the probability of a collosion decreases to 1 / (2^128).
+ If the number of nodes and edges in the graph is high, we can increase the signature length from 256 bits to lets say 1024 bytes. 
+ 
  
  If we choose the above hashing scheme, then we have a run time complexity of O (N^3 * Log N * Log(N+E)) and space complexity of O(N*Log(N+E)). But still a polynomial.
  
