@@ -3,7 +3,7 @@ Algorithm to check if two graphs are isomorphic. If the two graphs are isomorphi
 RunTime Complexity = O((N ^ 3) * log N).
 Space Complexity = O(N);
 
-I have not been able to find a example where it does not work. If you could find a example where it does not work, First reporter will get $1000 USD. Algorithms works by generating the nested adjecency list of depth = number of nodes in the graph. Significant change is I have used the edge cardinality of the vertices instead of ids. So the signature is completely devoid of id and works only with the edge cardinality (number of nodes connected to a node) and signature of the connected nodes. 
+I have not been able to find a example where it does not work.
 
 I have been working so hard to find a negative example but have been unsuccessful.
 
