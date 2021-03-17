@@ -23,7 +23,7 @@ public class Main {
             totalTime += System.currentTimeMillis() - time;
             if (i % 1000 == 0) {
                 System.out.println("###############################################################");
-                System.out.println("Number of random graphs, #vertices = " + numNodes+" edges, =  "+ numEdges+"  considered = " + i);
+                System.out.println("Number of connected random graphs, #vertices = " + numNodes+" edges, =  "+ numEdges+"  considered = " + i);
                 System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size());
                 System.out.println("Avg time to compute the signature =" + (totalTime/i) + "   milli seconds");
                 //System.out.println("###############################################################");
