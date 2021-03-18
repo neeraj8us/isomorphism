@@ -2,7 +2,7 @@ package com.neer.algo;
 
 import com.neer.Graph;
 import com.neer.Vertex;
-import com.neer.util.Util;
+
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -87,6 +87,6 @@ public class IsoMorphicGraphSignatureDP extends IsoMorphicAlgo{
         sb.append(String.join(",",signature));
         sb.append("]");
         String result = sb.toString();
-        return Util.getHashHex(result);
+        return this.idGenerator.getID(result);
     }
 }

@@ -17,20 +17,22 @@ public class Main {
         long totalTime = 0;
         System.out.println("Generating random graphs with " + numNodes  + " vertices and " + numEdges + " edges");
         for (int i = 1; i < 1000000; i++) {
+            //algo.resetIDGenerator();
             Graph g = RandomGraphGenerator.generateRandomGraph(numNodes, numEdges);
             time = System.currentTimeMillis();
             String sig = algo.getNestedGraphSignature(g);
             totalTime += System.currentTimeMillis() - time;
             if (i % 1000 == 0) {
                 System.out.println("###############################################################");
-                System.out.println("Number of connected random graphs, #vertices = " + numNodes+" edges, =  "+ numEdges+"  considered = " + i);
+                System.out.println("Number of random graphs, #vertices = " + numNodes+" edges, =  "+ numEdges+"  considered = " + (i-1));
                 System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size());
                 System.out.println("Avg time to compute the signature =" + (totalTime/i) + "   milli seconds");
                 //System.out.println("###############################################################");
             }
-            for (int j = 0; j < 1; j++) {
+            for (int j = 0; j < 0; j++) {
                 Graph g2 = g.getIsoMorphicGraph();
                 String sig2 = algo.getNestedGraphSignature(g2);
+                algo.resetIDGenerator();
                 HashMap<Integer, String> signatures = algo.getVerticesSignature(g2);
                 HashMap<Integer, String> signatures2 = algo.getVerticesSignature(g);
 

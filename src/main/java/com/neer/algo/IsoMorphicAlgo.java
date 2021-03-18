@@ -1,6 +1,7 @@
 package com.neer.algo;
 
 import com.neer.Graph;
+import com.neer.util.IDGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class IsoMorphicAlgo {
+
+    protected IDGenerator idGenerator = new IDGenerator();
+
+    public void resetIDGenerator(){
+        this.idGenerator =  new IDGenerator();
+    }
     /**
      * Generates the signatue from the Graph
      * @param @{@link Graph} from which signature needs to be generated. Ids of the vertices should vary from 0 to numVertices -1.
@@ -45,7 +52,7 @@ public abstract class IsoMorphicAlgo {
         /* Un comment if you want to get the mappings from Graph 1 to Graph 2.*/
 
         /*
-        System.out.println("Psiible 1-1 mappings is " );
+        System.out.println("possible 1-1 mappings is " );
         for (int i : mappings.keySet()) {
             System.out.println("Node " + i + "of graph 1 can map to " + mappings.get(i) + " Ndoes of Graph 2");
         }

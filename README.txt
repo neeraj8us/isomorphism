@@ -1,7 +1,7 @@
 Algorithm to check if two graphs are isomorphic. If the two graphs are isomorphic, this signature is exactly same.
 
 RunTime Complexity = O((N ^ 3) * log N).
-Space Complexity = O(N);
+Space Complexity = O(N^2);
 
 I have not been able to find a example where it does not work.
 
@@ -11,15 +11,9 @@ I have been working so hard to find a negative example but have been unsuccessfu
 Code in java file IsoMorphicGraphSignatureDP contains the method to generate the signature of the graph which is invariant
 for all isomorphic graph. i.e if the two graphs are isomorphic, their signature  will be exactly same.
 
+I have switched from SHA256 hash to auto increment integer id. I am now keep the cache of signature to int id. This makes the algorithm O(N^2) memory.
+If we want the signature to be globally unique we have to use the same ID across signature generation.
 
- In the case of hash collision, there is a chance that signatures are equal and graphs are not isomorphic. But that is remediated with the second step of generating the 1-1 mapping and verifying ISOMORPHISM.
- In the verification step, we check that the signature for the each mapped nodes in two graph is same. Even if the signature are same because of collission, for verification step to give false positive signatures of all the nodes should also have hash collisions. Probability of n collisions will be low. I am working on the formal proof. 
- 
- If the number of nodes and edges in the graph is high, we can increase the signature length from 256 bits to lets say 1024 bytes. 
- 
- 
- If we choose the above hashing scheme, then we have a run time complexity of O (N^3 * Log N * Log(N+E)) and space complexity of O(N*Log(N+E)). But still a polynomial.
- 
 
 To Build execute the command.
 $ ./gradlew build
@@ -81,7 +75,8 @@ public class IsoMorphicGraphSignatureDP implements IsoMorphicAlgo{
         sb.append(String.join(",",signature));
         sb.append("]");
         String result = sb.toString();
-        return Util.getHashHex(result);
+        //return Util.getHashHex(result);
+        return this.idGenerator.getID(result);
     }
     
     public boolean generateMappings(HashMap<Integer, String> signatures, HashMap<Integer, String> signatures2 ) {
