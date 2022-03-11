@@ -18,7 +18,7 @@ If we want the signature to be globally unique we have to use the same ID across
 To Build execute the command.
 $ ./gradlew build
 
-To run. java -cp .:build/lib/*.jar com.neer.Main
+To run. java -cp .:build/libs/*.jar com.neer.Main
 
 it generates the random graphs for specific number of vertices and edges and then generates the isomorphic graphs of the random graphs to test correctness of algorithms.
 

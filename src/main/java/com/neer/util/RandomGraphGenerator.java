@@ -9,7 +9,7 @@ public class RandomGraphGenerator {
 
     public static Graph generateRandomGraph(int numVertices, int numEdges) {
         Graph g;
-        //do {
+        do {
             g = new Graph();
             for (int i = 0; i < numVertices; i++) {
                 g.getVertices().put(i, new Vertex(i, g));
@@ -24,7 +24,7 @@ public class RandomGraphGenerator {
                     numEdgesAdded++;
                 }
             }
-        //} while (!g.isConnected());
+        } while (!g.isConnected());
         return g;
     }
 }

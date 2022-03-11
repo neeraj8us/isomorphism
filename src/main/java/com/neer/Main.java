@@ -10,8 +10,8 @@ import java.util.*;
 public class Main {
     static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDP();
     public static void main(String[] args) {
-        int numNodes = 500;
-        int numEdges = 5000; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numNodes = 10;
+        int numEdges = 30; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         HashSet<String> uniqueSigs = new HashSet<>();
         long time;
         long totalTime = 0;
@@ -19,10 +19,11 @@ public class Main {
         for (int i = 1; i < 1000000; i++) {
             //algo.resetIDGenerator();
             Graph g = RandomGraphGenerator.generateRandomGraph(numNodes, numEdges);
+            //System.out.println("Generated Graph");
             time = System.currentTimeMillis();
             String sig = algo.getNestedGraphSignature(g);
             totalTime += System.currentTimeMillis() - time;
-            if (i % 1 == 0) {
+            if (i % 10000 == 0) {
                 System.out.println("###############################################################");
                 System.out.println("Number of random graphs, #vertices = " + numNodes+" edges, =  "+ numEdges+"  considered = " + (i-1));
                 System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size());

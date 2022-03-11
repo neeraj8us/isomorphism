@@ -2,6 +2,7 @@ package com.neer.algo;
 
 import com.neer.Graph;
 import com.neer.Vertex;
+import com.neer.util.Util;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class IsoMorphicGraphSignatureDP extends IsoMorphicAlgo{
                     signature[j] = prevDepthSignature[u.getId()];
                     j++;
                 }
-                currDepthSignature[v.getId()]  = serialize(signature,v);
+                currDepthSignature[v.getId()]  = serialize(signature,prevDepthSignature[v.getId()]);
             }
             prevDepthSignature = currDepthSignature;
             currDepthSignature =  new String[numVertices];
@@ -54,7 +55,7 @@ public class IsoMorphicGraphSignatureDP extends IsoMorphicAlgo{
                     signature[j] = prevDepthSignature[u.getId()];
                     j++;
                 }
-                currDepthSignature[v.getId()]  = serialize(signature,v);
+                currDepthSignature[v.getId()]  = serialize(signature,prevDepthSignature[v.getId()]);
                 if (i == numVertices) {
                     result.put(v.getId(), currDepthSignature[v.getId()]);
                 }
@@ -74,19 +75,20 @@ public class IsoMorphicGraphSignatureDP extends IsoMorphicAlgo{
             i++;
         }
 
-        return serialize(signature,v);
+        return serialize(signature,v.getNumEdges() + "");
     }
 
-    public String serialize(String[] signature, Vertex v) {
+    public String serialize(String[] signature, String signatureV) {
         //Util.printArray(rs);
         Arrays.sort(signature);
         StringBuilder sb = new StringBuilder();
-        if (v != null)
-            sb.append(v.getNumEdges()).append("=");
+        if (signatureV != null)
+            sb.append(signatureV).append("=");
         sb.append("[");
         sb.append(String.join(",",signature));
         sb.append("]");
         String result = sb.toString();
-        return this.idGenerator.getID(result);
+        return Util.getHashHex(result);
+        //return this.idGenerator.getID(result);
     }
 }
