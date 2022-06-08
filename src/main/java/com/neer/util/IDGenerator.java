@@ -3,7 +3,7 @@ package com.neer.util;
 import java.util.HashMap;
 
 public class IDGenerator {
-    int id = -1;
+    int id = 0;
 
     // Need to externalize the idCache say in a RDBMS or key value store.
     private HashMap<String, Integer> _idCache = new HashMap<>();
