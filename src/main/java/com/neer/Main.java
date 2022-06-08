@@ -16,18 +16,22 @@ public class Main {
     public static void main(String[] args) {
         Random rand = new Random();
         RandomGraphGenerator rg = new RandomGraphGenerator();
-        rg.init(10);
-        int numNodes = 5;
-        int maxEdges = numNodes*(numNodes-1)/2;
-        int numEdges = 15; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+
+        int numNodes = 7;
+        rg.init(numNodes);
+        int numEdges = -1; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         HashMap<String, List<Graph>> uniqueSigs = new HashMap<>();
         long time;
         long totalTime = 0;
         System.out.println("Generating random graphs with " + numNodes + " vertices and " + numEdges + " edges");
         for (long i = 1; i < 1000000000000L; i++) {
-            //numEdges = numNodes -1+ rand.nextInt(2+maxEdges-numNodes);
             //algo.resetIDGenerator();
-            Graph g = rg.getNextGraph(10);
+            Graph g;
+            try {
+                g = rg.getNextGraph(numEdges);
+            } catch (Exception e) {
+                break;
+            }
             //System.out.println("Generated Graph");
             time = System.nanoTime();
             String sig = algo.getNestedGraphSignature(g);
@@ -78,6 +82,11 @@ public class Main {
                 List<Graph> lg = new ArrayList<>();
                 uniqueSigs.put(sig, lg);
                 lg.add(g);
+            }
+        }
+        for (String sig : uniqueSigs.keySet()) {
+            for (Graph origG : uniqueSigs.get(sig)) {
+                System.out.println(origG.getEdgeCount());
             }
         }
     }

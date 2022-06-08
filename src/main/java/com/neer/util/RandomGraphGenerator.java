@@ -26,14 +26,15 @@ public class RandomGraphGenerator {
     int numVertices = 0;
     private int numEdges;
     Edge[] edges;
+    boolean first = true;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         RandomGraphGenerator rg = new RandomGraphGenerator();
         rg.init(4);
         for (int i = 0; i < Math.pow(2, rg.edges.length); i++) {
 
             System.out.println(Arrays.asList(rg.edges));
-            rg.increment(false);
+            rg.increment();
         }
     }
 
@@ -48,15 +49,13 @@ public class RandomGraphGenerator {
                 index++;
             }
         }
-        increment(true);
     }
 
-    public Graph getNextGraph(int ed) {
+    public Graph getNextGraph(int ed) throws Exception {
         Graph g;
-        increment(false);
         g = new Graph();
         while (edgeCount() != ed && ed != -1)
-            increment(false);
+            increment();
 
 
         for (int i = 0; i < numVertices; i++) {
@@ -70,7 +69,7 @@ public class RandomGraphGenerator {
                 index++;
             }
         }
-
+        increment();
         //System.out.println(g.serialize());
         return g;
     }
@@ -85,11 +84,13 @@ public class RandomGraphGenerator {
         return count;
     }
 
-    private void increment(boolean first) {
+    private void increment() throws Exception {
+
         if (edgeCount() == 0 && !first) {
             System.out.println("Completed");
-            System.exit(0);
+            throw new Exception("No more Graphs. Completed");
         }
+        first = false;
         for (int i = edges.length - 1; i >= 0; i--) {
             if (edges[i].exists)
                 edges[i].exists = false;

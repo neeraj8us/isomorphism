@@ -19,17 +19,18 @@ public abstract class IsoMorphicAlgo {
     /**
      * Generates the signatue from the Graph
      * @param @{@link Graph} from which signature needs to be generated. Ids of the vertices should vary from 0 to numVertices -1.
-     * @return SHA-256 hash of the Signature.
+     * @return Integer ID of the Signature.
      */
     public abstract String getNestedGraphSignature(Graph g);
 
     /**
      * Returns the signature for every vertex in the Graph.
      * @param
-     * @return Map of vertex id to the SHA-256 has of the signature.
+     * @return Map of vertex id to the ID has of the signature.
      */
     public abstract  HashMap<Integer, String> getVerticesSignature(Graph g);
 
+    public abstract String serialize(String[] signature, String signatureV) ;
     public boolean isIsomorphic(Graph g, Graph g2) {
         HashMap<Integer, String> sig1 = getVerticesSignature(g);
         HashMap<Integer, String> sig2 = getVerticesSignature(g2);
@@ -45,6 +46,7 @@ public abstract class IsoMorphicAlgo {
             }
 
         }
+
         for (int vId = 0; vId < g.getVertices().size(); vId++) {
             int newID = g.getVertices().size();
             Vertex v1 = g.getVertices().get(vId);
@@ -64,7 +66,7 @@ public abstract class IsoMorphicAlgo {
                 //System.out.println(sig1New + "   ==? " + sig2New);
                 if (!sig1New.equalsIgnoreCase(sig2New))
                 {
-                    atLeastOneMatch = false;
+                    //System.out.println(sig1New + "   ==? " + sig2New);
                     g2.getVertices().remove(newID);
                     v2.getEdges().remove(u2.getId());
                     g.getVertices().remove(newID);

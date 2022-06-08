@@ -102,5 +102,12 @@ public class Graph {
         }
         return g;
     }
+    public int getEdgeCount(){
+        int edgeCount = 0;
+        for (Vertex v : getVertices().values()) {
+            edgeCount += v.getNumEdges();
+        }
+        return edgeCount/2;
+    }
 
 }

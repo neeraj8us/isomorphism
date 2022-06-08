@@ -41,13 +41,13 @@ public class VerifyMappings {
     }
 
     public  void match(String args[]) throws IOException{
-        Graph g = Graph.deserialize(new FileReader("ga2.txt"));
-        Graph g2 = Graph.deserialize(new FileReader("ga1.txt"));
+        Graph g = Graph.deserialize(new FileReader("g10.txt"));
+        Graph g2 = Graph.deserialize(new FileReader("g101.txt"));
         IsoMorphicGraphSignatureDP algo = new IsoMorphicGraphSignatureDP();
         String sig1 = algo.getNestedGraphSignature(g);
         String sig2 = algo.getNestedGraphSignature(g2);
         //algo.verifyMappings(algo.getVerticesSignature(g), algo.getVerticesSignature(g2));
-        boolean isMorphic = algo.isIsomorphic(g,g2);
+        boolean isMorphic = sig2.equalsIgnoreCase(sig2) && algo.isIsomorphic(g,g2);
         if (isMorphic) {
             System.out.println("Graphs are isomorphic");
         } else {
