@@ -27,7 +27,15 @@ public class RandomGraphGenerator {
     private int numEdges;
     Edge[] edges;
     boolean first = true;
-
+    public boolean[] getEdges(){
+        boolean[] edg = new boolean[edges.length];
+        int i = 0;
+        for (Edge e : edges) {
+            edg[i] = e.exists;
+            i++;
+        }
+        return edg;
+    }
     public static void main(String[] args) throws Exception {
         RandomGraphGenerator rg = new RandomGraphGenerator();
         rg.init(4);

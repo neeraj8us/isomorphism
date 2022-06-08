@@ -41,20 +41,22 @@ public class VerifyMappings {
     }
 
     public  void match(String args[]) throws IOException{
-        Graph g = Graph.deserialize(new FileReader("g10.txt"));
-        Graph g2 = Graph.deserialize(new FileReader("g101.txt"));
-        IsoMorphicGraphSignatureDP algo = new IsoMorphicGraphSignatureDP();
-        String sig1 = algo.getNestedGraphSignature(g);
-        String sig2 = algo.getNestedGraphSignature(g2);
-        //algo.verifyMappings(algo.getVerticesSignature(g), algo.getVerticesSignature(g2));
-        boolean isMorphic = sig2.equalsIgnoreCase(sig2) && algo.isIsomorphic(g,g2);
-        if (isMorphic) {
-            System.out.println("Graphs are isomorphic");
-        } else {
-            System.out.println("Graphs are not isomorphic");
-        }
-        System.out.println(sig1 + " ==? " + sig2);
+        Graph g = Graph.deserialize(new FileReader("gEdge.txt"));
+        for (int i = 0 ; i < 10000; i++) {
+            Graph g2 = g.getIsoMorphicGraph();
+            IsoMorphicGraphSignatureDP algo = new IsoMorphicGraphSignatureDP();
+            String sig1 = algo.getNestedGraphSignature(g);
+            String sig2 = algo.getNestedGraphSignature(g2);
+            //algo.verifyMappings(algo.getVerticesSignature(g), algo.getVerticesSignature(g2));
+            boolean isMorphic = sig2.equalsIgnoreCase(sig2) && algo.isIsomorphic(g, g2);
+            if (isMorphic) {
+                System.out.println("Graphs are isomorphic");
+            } else {
+                System.out.println("Graphs are not isomorphic");
 
+            }
+            System.out.println(sig1 + " ==? " + sig2);
+        }
     }
 
     public static void main(String args[]) throws IOException {

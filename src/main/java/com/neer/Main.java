@@ -5,10 +5,7 @@ import com.neer.algo.IsoMorphicAlgo;
 import com.neer.algo.IsoMorphicGraphSignatureDP;
 import com.neer.util.RandomGraphGenerator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDP();
@@ -17,9 +14,9 @@ public class Main {
         Random rand = new Random();
         RandomGraphGenerator rg = new RandomGraphGenerator();
 
-        int numNodes = 7;
+        int numNodes = 8;
         rg.init(numNodes);
-        int numEdges = -1; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numEdges = 13; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         HashMap<String, List<Graph>> uniqueSigs = new HashMap<>();
         long time;
         long totalTime = 0;
@@ -29,6 +26,8 @@ public class Main {
             Graph g;
             try {
                 g = rg.getNextGraph(numEdges);
+                if (!g.isConnected())
+                    continue;
             } catch (Exception e) {
                 break;
             }
@@ -36,7 +35,7 @@ public class Main {
             time = System.nanoTime();
             String sig = algo.getNestedGraphSignature(g);
             totalTime += System.nanoTime() - time;
-            if (i % 100 == 0) {
+            if (i % 10000 == 0) {
                 int count = 0;
                 for(List<Graph> gList : uniqueSigs.values()) {
                     count+= gList.size();
@@ -45,7 +44,7 @@ public class Main {
                 System.out.println("Number of random graphs, #vertices = " + numNodes + " edges, =  " + numEdges + "  considered = " + (i));
                 System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size() + " and unique graphs = " + count);
                 System.out.println("Avg time to compute the signature =" + (totalTime / i) + "   milli seconds");
-                //System.out.println("###############################################################");
+                System.out.println(Arrays.toString(rg.getEdges()));
             }
             for (int j = 0; j < 0; j++) {
                 Graph g2 = g.getIsoMorphicGraph();
@@ -84,11 +83,11 @@ public class Main {
                 lg.add(g);
             }
         }
-        for (String sig : uniqueSigs.keySet()) {
-            for (Graph origG : uniqueSigs.get(sig)) {
-                System.out.println(origG.getEdgeCount());
-            }
+        int count = 0;
+        for(List<Graph> gList : uniqueSigs.values()) {
+            count+= gList.size();
         }
+        System.out.println("Number of simple graphs = " + count);
     }
 
 }

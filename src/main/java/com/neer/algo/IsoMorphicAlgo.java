@@ -33,6 +33,7 @@ public abstract class IsoMorphicAlgo {
     public abstract String serialize(String[] signature, String signatureV) ;
     public boolean isIsomorphic(Graph g, Graph g2) {
         HashMap<Integer, String> sig1 = getVerticesSignature(g);
+        //System.out.println(sig1.values());
         HashMap<Integer, String> sig2 = getVerticesSignature(g2);
         boolean atLeastOneMatch = true;
         Map<Integer, List<Integer>> mappings = new HashMap<>();
@@ -66,7 +67,9 @@ public abstract class IsoMorphicAlgo {
                 //System.out.println(sig1New + "   ==? " + sig2New);
                 if (!sig1New.equalsIgnoreCase(sig2New))
                 {
-                    //System.out.println(sig1New + "   ==? " + sig2New);
+                    //System.out.println(g.serialize());
+                    //System.out.println("Second Graph");
+                    //System.out.println(g2.serialize());
                     g2.getVertices().remove(newID);
                     v2.getEdges().remove(u2.getId());
                     g.getVertices().remove(newID);
