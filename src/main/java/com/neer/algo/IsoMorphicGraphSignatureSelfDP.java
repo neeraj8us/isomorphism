@@ -67,7 +67,7 @@ public class IsoMorphicGraphSignatureSelfDP extends IsoMorphicAlgo {
         int i = 0;
         for (Vertex u : v.getEdges().values()) {
             if (u.getId() == self.getId())
-                signature[i] = "self:"+Integer.toString(u.getNumEdges());
+                signature[i] = "self:"+u.getNumEdges();
             else
                 signature[i] = Integer.toString(u.getNumEdges());
             i++;
@@ -78,60 +78,7 @@ public class IsoMorphicGraphSignatureSelfDP extends IsoMorphicAlgo {
             return serialize(signature, v.getNumEdges() + "");
     }
 
-    public List<List<IDAndSig>> getAllStepsVerticesSignature(Graph g) {
-        int numVertices = g.getVertices().size();
-        List<List<IDAndSig>> result = new ArrayList<>();
 
-        IDAndSig[] prevDepthSignature = new IDAndSig[numVertices];
-        IDAndSig[] currDepthSignature = new IDAndSig[numVertices];
-
-        for (Vertex v : g.getVertices().values()) {
-            prevDepthSignature[v.getId()] = getVertexSignatureFull(v);
-        }
-        result.add(Arrays.asList(prevDepthSignature));
-        //Util.printArray(prevDepthSignature);
-        for (int i = 1; i < numVertices; i++) {
-            for (Vertex v : g.getVertices().values()) {
-                String[] signature = new String[v.getNumEdges()];
-                int j = 0;
-                for (Vertex u : v.getEdges().values()) {
-                    signature[j] = prevDepthSignature[u.getId()].id;
-                    j++;
-                }
-                currDepthSignature[v.getId()] = serializeFull(signature, prevDepthSignature[v.getId()].id);
-                /** if (i == numVertices) {
-                 result.put(v.getId(), currDepthSignature[v.getId()]);
-                 }*/
-            }
-            result.add(Arrays.asList(currDepthSignature));
-            prevDepthSignature = currDepthSignature;
-            currDepthSignature = new IDAndSig[numVertices];
-        }
-
-        return result;
-    }
-
-    public String getVertexSignature(Vertex v) {
-        String[] signature = new String[v.getNumEdges()];
-        int i = 0;
-        for (Vertex u : v.getEdges().values()) {
-            signature[i] = Integer.toString(u.getNumEdges());
-            i++;
-        }
-
-        return serialize(signature, v.getNumEdges() + "");
-    }
-
-    public IDAndSig getVertexSignatureFull(Vertex v) {
-        String[] signature = new String[v.getNumEdges()];
-        int i = 0;
-        for (Vertex u : v.getEdges().values()) {
-            signature[i] = Integer.toString(u.getNumEdges());
-            i++;
-        }
-
-        return serializeFull(signature, v.getNumEdges() + "");
-    }
 
     public String serialize(String[] signature, String signatureV) {
         //Util.printArray(rs);
@@ -145,20 +92,6 @@ public class IsoMorphicGraphSignatureSelfDP extends IsoMorphicAlgo {
         String result = sb.toString();
         //return Util.getHashHex(result);
         return this.idGenerator.getID(result);
-    }
-
-    public IDAndSig serializeFull(String[] signature, String signatureV) {
-        //Util.printArray(rs);
-        Arrays.sort(signature);
-        StringBuilder sb = new StringBuilder();
-        if (signatureV != null)
-            sb.append(signatureV).append("->");
-        sb.append("[");
-        sb.append(String.join(",", signature));
-        sb.append("]");
-        String result = sb.toString();
-        //return Util.getHashHex(result);
-        return new IDAndSig(this.idGenerator.getID(result), result);
     }
 }
 
