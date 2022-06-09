@@ -40,7 +40,7 @@ for l in f:
     u, vl = l.split('=')
     for v in vl.split(','):
         if u < v:
-            G.addEdge(u, v)
+            G.addEdge(int(u), int(v))
             print('adding the edge', u, v)
 G.visualize()
 
