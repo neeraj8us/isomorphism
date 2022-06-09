@@ -1,11 +1,14 @@
 package com.neer.util;
 
 import com.neer.Graph;
+import com.neer.Vertex;
 import com.neer.algo.IDAndSig;
 import com.neer.algo.IsoMorphicGraphSignatureDP;
+import com.neer.algo.IsoMorphicGraphSignatureSelfDP;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class VerifyMappings {
@@ -59,9 +62,41 @@ public class VerifyMappings {
         }
     }
 
+    public String getGraphSignature(Graph g) {
+        IsoMorphicGraphSignatureSelfDP algo = new IsoMorphicGraphSignatureSelfDP();
+        String[] signature = new String[g.getVertices().size()];
+
+        for (Vertex v: g.getVertices().values()) {
+            signature[v.getId()] = algo.getSelfSignature(v);
+        }
+        Arrays.sort(signature);
+        System.out.println(Arrays.toString(signature));
+        return algo.serialize(signature, null);
+    }
+
+    public  void matchSelf(String args[]) throws IOException{
+        Graph g = Graph.deserialize(new FileReader("gEdge.txt"));
+        for (int i = 0 ; i < 3; i++) {
+            Graph g2 = g.getIsoMorphicGraph();
+            IsoMorphicGraphSignatureSelfDP algo = new IsoMorphicGraphSignatureSelfDP();
+            String sig1 = getGraphSignature(g);
+            String sig2 = getGraphSignature(g2);
+
+            //algo.verifyMappings(algo.getVerticesSignature(g), algo.getVerticesSignature(g2));
+            boolean isMorphic = sig2.equalsIgnoreCase(sig1) && algo.isIsomorphic(g, g2);
+            if (isMorphic) {
+                System.out.println("Graphs are isomorphic");
+            } else {
+                System.out.println("Graphs are not isomorphic");
+
+            }
+            System.out.println(sig1 + " ==? " + sig2);
+        }
+    }
+
     public static void main(String args[]) throws IOException {
         VerifyMappings gx = new VerifyMappings();
-        gx.match(args);
+        gx.matchSelf(args);
     }
 
 

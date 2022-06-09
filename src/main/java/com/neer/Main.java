@@ -3,12 +3,13 @@ package com.neer;
 
 import com.neer.algo.IsoMorphicAlgo;
 import com.neer.algo.IsoMorphicGraphSignatureDP;
+import com.neer.algo.IsoMorphicGraphSignatureSelfDP;
 import com.neer.util.RandomGraphGenerator;
 
 import java.util.*;
 
 public class Main {
-    static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDP();
+    static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureSelfDP();
 
     public static void main(String[] args) {
         Random rand = new Random();
@@ -16,7 +17,7 @@ public class Main {
 
         int numNodes = 8;
         rg.init(numNodes);
-        int numEdges = 13; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numEdges = 10; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         HashMap<String, List<Graph>> uniqueSigs = new HashMap<>();
         long time;
         long totalTime = 0;
@@ -26,8 +27,8 @@ public class Main {
             Graph g;
             try {
                 g = rg.getNextGraph(numEdges);
-                if (!g.isConnected())
-                    continue;
+                //if (!g.isConnected())
+                //    continue;
             } catch (Exception e) {
                 break;
             }
@@ -43,7 +44,7 @@ public class Main {
                 System.out.println("###############################################################");
                 System.out.println("Number of random graphs, #vertices = " + numNodes + " edges, =  " + numEdges + "  considered = " + (i));
                 System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size() + " and unique graphs = " + count);
-                System.out.println("Avg time to compute the signature =" + (totalTime / i) + "   milli seconds");
+                System.out.println("Avg time to compute the signature =" + (totalTime / i) + "   nano seconds");
                 System.out.println(Arrays.toString(rg.getEdges()));
             }
             for (int j = 0; j < 0; j++) {
@@ -67,7 +68,7 @@ public class Main {
             if (uniqueSigs.containsKey(sig)) {
                 List<Graph> origGList = uniqueSigs.get(sig);
                 boolean unique = true;
-                for (Graph origG : origGList) {
+                /*for (Graph origG : origGList) {
                     if (algo.isIsomorphic(origG, g)){
                         unique = false;
                         break;
@@ -76,7 +77,7 @@ public class Main {
                 }
                 if (unique) {
                     origGList.add(g);
-                }
+                }*/
             } else {
                 List<Graph> lg = new ArrayList<>();
                 uniqueSigs.put(sig, lg);
