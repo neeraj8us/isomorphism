@@ -2,10 +2,16 @@ package com.neer.algo;
 
 import com.neer.Graph;
 import com.neer.Vertex;
-import sun.font.TrueTypeFont;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
+/**
+ * This algorithm failes for symmetric and regular graphs. Please use @{@link IsoMorphicGraphSignatureDPV2}
+ */
+@Deprecated
 public class IsoMorphicGraphSignatureDP extends IsoMorphicAlgo {
 
     @Override

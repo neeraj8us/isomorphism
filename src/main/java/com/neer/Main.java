@@ -2,22 +2,21 @@ package com.neer;
 
 
 import com.neer.algo.IsoMorphicAlgo;
-import com.neer.algo.IsoMorphicGraphSignatureDP;
-import com.neer.algo.IsoMorphicGraphSignatureSelfDP;
-import com.neer.util.RandomGraphGenerator;
+import com.neer.algo.IsoMorphicGraphSignatureDPV2;
+import com.neer.util.GraphGenerator;
 
 import java.util.*;
 
 public class Main {
-    static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureSelfDP();
+    static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDPV2();
 
     public static void main(String[] args) {
         Random rand = new Random();
-        RandomGraphGenerator rg = new RandomGraphGenerator();
+        GraphGenerator rg = new GraphGenerator();
 
         int numNodes = 8;
         rg.init(numNodes);
-        int numEdges = 10; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        int numEdges = 14; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
         HashMap<String, List<Graph>> uniqueSigs = new HashMap<>();
         long time;
         long totalTime = 0;
@@ -36,7 +35,7 @@ public class Main {
             time = System.nanoTime();
             String sig = algo.getNestedGraphSignature(g);
             totalTime += System.nanoTime() - time;
-            if (i % 10000 == 0) {
+            if (i % 100000 == 0) {
                 int count = 0;
                 for(List<Graph> gList : uniqueSigs.values()) {
                     count+= gList.size();
@@ -81,7 +80,7 @@ public class Main {
             } else {
                 List<Graph> lg = new ArrayList<>();
                 uniqueSigs.put(sig, lg);
-                lg.add(g);
+                //lg.add(g);
             }
         }
         int count = 0;

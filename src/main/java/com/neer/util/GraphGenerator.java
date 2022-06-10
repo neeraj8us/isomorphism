@@ -22,7 +22,7 @@ class Edge {
     }
 }
 
-public class RandomGraphGenerator {
+public class GraphGenerator {
     int numVertices = 0;
     private int numEdges;
     Edge[] edges;
@@ -37,11 +37,11 @@ public class RandomGraphGenerator {
         return edg;
     }
     public static void main(String[] args) throws Exception {
-        RandomGraphGenerator rg = new RandomGraphGenerator();
-        rg.init(4);
+        GraphGenerator rg = new GraphGenerator();
+        rg.init(10);
         for (int i = 0; i < Math.pow(2, rg.edges.length); i++) {
 
-            System.out.println(Arrays.asList(rg.edges));
+            System.out.println(Arrays.toString(rg.getEdges()));
             rg.increment();
         }
     }

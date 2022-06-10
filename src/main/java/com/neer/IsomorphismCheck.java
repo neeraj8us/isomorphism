@@ -1,11 +1,10 @@
 package com.neer;
 
 import com.neer.algo.IsoMorphicAlgo;
-import com.neer.algo.IsoMorphicGraphSignatureSelfDP;
+import com.neer.algo.IsoMorphicGraphSignatureDPV2;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 
 public class IsomorphismCheck {
     public static void main(String[] args) throws IOException {
@@ -13,7 +12,7 @@ public class IsomorphismCheck {
             System.out.println("Usage: java com.neer.IsomorphismCheck graphFile1 graphFile2");
             System.exit(1);
         }
-        IsoMorphicAlgo algo = new IsoMorphicGraphSignatureSelfDP();
+        IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDPV2();
         String graph1 = args[0];
         String graph2 = args[1];
         Graph g1 = Graph.deserialize(new FileReader(graph1));

@@ -28,10 +28,29 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763ec577-3d9b-47f7-9365-75486b287a43" name="Default Changelist" comment="Optimized IsoDP.java&#10;Now it only take 40 seconds for a 500 node graph with 248650 edges.">
+    <list default="true" id="763ec577-3d9b-47f7-9365-75486b287a43" name="Default Changelist" comment="Added a utility to check if two graphs in files are isomorphic or not.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/g1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/g10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/g101.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/g2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gEdge.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ga1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ga2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ga3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/IsomorphismCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/IsomorphismCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureSelfDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDPV2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/util/RandomGraphGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/util/GraphGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/util/VerifyMappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/util/VerifyMappings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +64,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -106,14 +135,27 @@
       <recent name="com.neer.algo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.neer.Main" />
+  <component name="RunManager" selected="Application.RandomGraphGenerator">
+    <configuration name="GraphGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.neer.util.GraphGenerator" />
       <module name="untitled.main" />
-      <option name="PROGRAM_PARAMETERS" value="-Xmx1G" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.neer.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IsomorphismCheck" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.neer.IsomorphismCheck" />
+      <module name="untitled.main" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/graph1.txt $PROJECT_DIR$/graph2.txt " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.neer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,12 +168,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RandomGraphGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.neer.util.RandomGraphGenerator" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.neer.Main" />
       <module name="untitled.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.neer.util.*" />
+          <option name="PATTERN" value="com.neer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,27 +194,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="GraphTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.neer.GraphTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
     </configuration>
     <configuration name="GraphTest.testSerialize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -205,19 +226,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.VerifyMappings" />
       <item itemvalue="Application.RandomGraphGenerator" />
-      <item itemvalue="Gradle.GraphTest" />
+      <item itemvalue="Application.IsomorphismCheck" />
       <item itemvalue="Gradle.GraphTest.testSerialize" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.IsomorphismCheck" />
         <item itemvalue="Application.RandomGraphGenerator" />
         <item itemvalue="Application.VerifyMappings" />
         <item itemvalue="Gradle.GraphTest.testSerialize" />
-        <item itemvalue="Gradle.GraphTest" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +303,21 @@
       <option name="project" value="LOCAL" />
       <updated>1602847426339</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Optimized IsoDP.java&#10;Now it only take 40 seconds for a 500 node graph with 248650 edges.">
+      <created>1654740324334</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1654740324334</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added a utility to check if two graphs in files are isomorphic or not.">
+      <created>1654740451247</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1654740451247</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,14 +347,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed a bug" />
     <MESSAGE value="Optimized IsoDP.java&#10;Now it only take 40 seconds for a 500 node graph with 248650 edges." />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized IsoDP.java&#10;Now it only take 40 seconds for a 500 node graph with 248650 edges." />
+    <MESSAGE value="Added a utility to check if two graphs in files are isomorphic or not." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a utility to check if two graphs in files are isomorphic or not." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/neer/Main.java</url>
-          <line>28</line>
+          <line>27</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

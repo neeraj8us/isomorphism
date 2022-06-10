@@ -4,7 +4,7 @@ import com.neer.Graph;
 import com.neer.Vertex;
 import com.neer.algo.IDAndSig;
 import com.neer.algo.IsoMorphicGraphSignatureDP;
-import com.neer.algo.IsoMorphicGraphSignatureSelfDP;
+import com.neer.algo.IsoMorphicGraphSignatureDPV2;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class VerifyMappings {
     }
 
     public String getGraphSignature(Graph g) {
-        IsoMorphicGraphSignatureSelfDP algo = new IsoMorphicGraphSignatureSelfDP();
+        IsoMorphicGraphSignatureDPV2 algo = new IsoMorphicGraphSignatureDPV2();
         String[] signature = new String[g.getVertices().size()];
 
         for (Vertex v: g.getVertices().values()) {
@@ -78,7 +78,7 @@ public class VerifyMappings {
         Graph g = Graph.deserialize(new FileReader("gEdge.txt"));
         for (int i = 0 ; i < 3; i++) {
             Graph g2 = g.getIsoMorphicGraph();
-            IsoMorphicGraphSignatureSelfDP algo = new IsoMorphicGraphSignatureSelfDP();
+            IsoMorphicGraphSignatureDPV2 algo = new IsoMorphicGraphSignatureDPV2();
             String sig1 = getGraphSignature(g);
             String sig2 = getGraphSignature(g2);
 

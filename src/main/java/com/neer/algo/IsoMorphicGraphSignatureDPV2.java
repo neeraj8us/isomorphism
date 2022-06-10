@@ -3,12 +3,10 @@ package com.neer.algo;
 import com.neer.Graph;
 import com.neer.Vertex;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
-public class IsoMorphicGraphSignatureSelfDP extends IsoMorphicAlgo {
+public class IsoMorphicGraphSignatureDPV2 extends IsoMorphicAlgo {
 
     @Override
     public String getNestedGraphSignature(Graph g) {
@@ -22,8 +20,7 @@ public class IsoMorphicGraphSignatureSelfDP extends IsoMorphicAlgo {
     @Override
     public HashMap<Integer, String> getVerticesSignature(Graph g) {
         HashMap<Integer, String> result = new HashMap<>();
-        int numVertices = g.getVertices().size();
-
+        
         for (Vertex v: g.getVertices().values()) {
             result.put(v.getId(), getSelfSignature(v));
         }
