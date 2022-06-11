@@ -5,19 +5,31 @@ import com.neer.algo.IsoMorphicAlgo;
 import com.neer.algo.IsoMorphicGraphSignatureDPV2;
 import com.neer.util.GraphGenerator;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
     static final IsoMorphicAlgo algo = new IsoMorphicGraphSignatureDPV2();
+    public static final String NUM_VERTICES = "NUM_VERTICES";
+    public static final String NUM_EDGES = "NUM_EDGES";
+    public static final String PRINT_AFTER_ITERATIONS = "PRINT_AFTER_ITERATIONS";
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         Random rand = new Random();
         GraphGenerator rg = new GraphGenerator();
+        Properties p = new Properties();
+        p.load(new FileReader(args[0]));
 
-        int numNodes = 8;
+
+        int numNodes = Integer.parseInt(p.getProperty(NUM_VERTICES));
+        int numEdges = Integer.parseInt(p.getProperty(NUM_EDGES));
+        int printAfterInterations = Integer.parseInt(p.getProperty(PRINT_AFTER_ITERATIONS));
         rg.init(numNodes);
-        int numEdges = 14; //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
-        HashMap<String, List<Graph>> uniqueSigs = new HashMap<>();
+         //(int) (numNodes * numNodes / 2 - (numNodes * Math.log(numNodes)));
+        HashSet<String> uniqueSigs = new HashSet<>();
         long time;
         long totalTime = 0;
         System.out.println("Generating random graphs with " + numNodes + " vertices and " + numEdges + " edges");
@@ -26,8 +38,6 @@ public class Main {
             Graph g;
             try {
                 g = rg.getNextGraph(numEdges);
-                //if (!g.isConnected())
-                //    continue;
             } catch (Exception e) {
                 break;
             }
@@ -35,59 +45,20 @@ public class Main {
             time = System.nanoTime();
             String sig = algo.getNestedGraphSignature(g);
             totalTime += System.nanoTime() - time;
-            if (i % 100000 == 0) {
-                int count = 0;
-                for(List<Graph> gList : uniqueSigs.values()) {
-                    count+= gList.size();
-                }
+            if (i % printAfterInterations == 0) {
                 System.out.println("###############################################################");
-                System.out.println("Number of random graphs, #vertices = " + numNodes + " edges, =  " + numEdges + "  considered = " + (i));
-                System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size() + " and unique graphs = " + count);
+                System.out.println("Number of random graphs, #vertices = " + numNodes + ", edges ( -1 -> all possible)=  " + numEdges + "  considered = " + (i));
+                System.out.println("Number of unique signature(# non isomorphic graphs)  = " + uniqueSigs.size() );
                 System.out.println("Avg time to compute the signature =" + (totalTime / i) + "   nano seconds");
                 System.out.println(Arrays.toString(rg.getEdges()));
             }
-            for (int j = 0; j < 0; j++) {
-                Graph g2 = g.getIsoMorphicGraph();
-                String sig2 = algo.getNestedGraphSignature(g2);
-                //algo.resetIDGenerator();
-                HashMap<Integer, String> signatures = algo.getVerticesSignature(g2);
-                HashMap<Integer, String> signatures2 = algo.getVerticesSignature(g);
-
-                if (!algo.isIsomorphic(g, g2)) {
-                    System.out.println("Graphs are not isomorphic");
-                    System.out.println("" + sig);
-                    System.out.println("" + sig2);
-                    System.out.println(g.serialize());
-                    System.out.println("Second Graph");
-                    System.out.println(g2.serialize());
-                    algo.verifyMappings(algo.getVerticesSignature(g), algo.getVerticesSignature(g2));
-                    System.exit(1);
-                }
-            }
-            if (uniqueSigs.containsKey(sig)) {
-                List<Graph> origGList = uniqueSigs.get(sig);
-                boolean unique = true;
-                /*for (Graph origG : origGList) {
-                    if (algo.isIsomorphic(origG, g)){
-                        unique = false;
-                        break;
-                    }
-
-                }
-                if (unique) {
-                    origGList.add(g);
-                }*/
-            } else {
-                List<Graph> lg = new ArrayList<>();
-                uniqueSigs.put(sig, lg);
-                //lg.add(g);
+            if (!uniqueSigs.contains(sig)) {
+                uniqueSigs.add(sig);
             }
         }
-        int count = 0;
-        for(List<Graph> gList : uniqueSigs.values()) {
-            count+= gList.size();
-        }
-        System.out.println("Number of simple graphs = " + count);
+
+
+        System.out.println("Number of simple graphs with "+numNodes+" vertices and  "+numEdges+" edges (-1 -> all possible graphs) is " + uniqueSigs.size());
     }
 
 }

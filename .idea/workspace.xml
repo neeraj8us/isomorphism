@@ -30,27 +30,7 @@
   <component name="ChangeListManager">
     <list default="true" id="763ec577-3d9b-47f7-9365-75486b287a43" name="Default Changelist" comment="Added a utility to check if two graphs in files are isomorphic or not.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/g1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/g10.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/g101.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/g2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gEdge.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ga1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ga2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ga3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/IsomorphismCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/IsomorphismCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureSelfDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/algo/IsoMorphicGraphSignatureDPV2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/util/RandomGraphGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/util/GraphGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/neer/util/VerifyMappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neer/util/VerifyMappings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/neer/GraphTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +115,7 @@
       <recent name="com.neer.algo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RandomGraphGenerator">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="GraphGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.neer.util.GraphGenerator" />
       <module name="untitled.main" />
@@ -355,7 +335,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/neer/Main.java</url>
-          <line>27</line>
+          <line>39</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
